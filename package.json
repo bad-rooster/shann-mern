@@ -6,7 +6,10 @@
     "dev": "nodemon backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "Frank Shann",
+    "RAG LLM"
+  ],
   "author": "ayn",
   "license": "ISC",
   "description": "Shann RAG LLM",
@@ -15,6 +18,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@langchain/core": "^0.3.42",
+    "@langchain/ollama": "^0.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.12.1"

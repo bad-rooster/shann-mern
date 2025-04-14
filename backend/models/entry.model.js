@@ -5,10 +5,12 @@ const entrySchema = new mongoose.Schema({
     key: { type: String, required: true },
     value: { type: String, required: true },
     verification:{
-        is_verified: { type: Boolean, required: true, default: false },
-        reviewer: { type: String, required: false, default: null },
+        is_ocr_verified: { type: Boolean, required: true, default: false },
+        ocr_reviewer: { type: String, required: false, default: null },
+        is_dosage_verified: { type: Boolean, required: true, default: false },
+        dosage_reviewer: { type: String, required: false, default: null }
     }
-})
+}, { timestamps: true });
 
 const Entry = mongoose.model('dosage-formula', entrySchema);
 
