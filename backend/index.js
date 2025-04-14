@@ -39,7 +39,8 @@ app.get('/api/search', async (req, res) => {
         }, {
             $project: {
                 _id: 1,
-                key: 1
+                key: 1,
+                value: 1
             }
         }];
 
