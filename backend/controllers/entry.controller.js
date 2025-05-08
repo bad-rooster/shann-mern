@@ -58,7 +58,7 @@ Else, skip the sentence.`;
     const id = req.params.id;
 
     const llm = new Ollama({
-        model: "mistral",
+        model: "gemma3:12b",
         temperature: 0.1,
         maxRetries: 2,
     });
