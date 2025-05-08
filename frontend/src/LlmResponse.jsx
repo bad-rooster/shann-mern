@@ -1,21 +1,23 @@
-import { useLlm } from "@/hooks/useLlm";
-import { Text, Box, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { Text, Box } from "@chakra-ui/react";
+import ReactMarkdown from "react-markdown";
+
 
 export const LlmResultComponent = ({ loading, results }) => {
-    // const { handleLlm } = useLlm();
-    // const [results, setResults] = useState(null);
-    // const [loading, setLoading] = useState(false);
-
+    console.log("Rendering LlmResultComponent");
+    console.log("loading", loading);
+    console.log(results);
     return (
         <Box>
             {loading ? (
                 <Text>Loading results...</Text>
             ) : results ? (
                 <Box mt={4}>
-                    <Text mt={2} whiteSpace="pre-wrap">
-                        {results}
-                    </Text>
+                    <Box mt={2}>
+                        <ReactMarkdown>
+                            {results}
+                        </ReactMarkdown>
+                    </Box>
+
                 </Box>
             ) : null}
         </Box>

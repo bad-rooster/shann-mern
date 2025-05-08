@@ -27,7 +27,6 @@ function App(
     const { handleSearch } = useSearch();
     const { handleLlm } = useLlm();
     const updateProductId = useProductId((state) => state.fetchProductId);
-    const [llmResponse, setLlmResponse] = useState(null);
     const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -79,7 +78,7 @@ function App(
                           p={4}
                       >
                           {input_str.map((item) => (
-                              <Dialog.Root key={item._id} size="sm" scrollBehavior="outside">
+                              <Dialog.Root key={item._id} size="sm" scrollBehavior="outside" closeOnInteractOutside={false}>
                                   <Dialog.Trigger asChild>
                                       <Box
 
@@ -91,7 +90,7 @@ function App(
                                           _hover={{ transform: "translateY(-5px)" }}
                                           onClick={async () => {
                                               console.log(`Fetching document details for: ${item.key} with id ${item._id}`);
-                                              setLlmResponse(null);
+                                              setResults(null);
                                           }}
                                       >
                                           <Heading size="md" mb={2}>
@@ -107,7 +106,7 @@ function App(
                                                   <Dialog.Title>{item.key}</Dialog.Title>
                                               </Dialog.Header>
                                               <Dialog.CloseTrigger asChild>
-                                                  <CloseButton size="sm" onClick={() => {setLlmResponse(null);}}/>
+                                                  <CloseButton size="sm" onClick={() => {setResults(null);}}/>
                                               </Dialog.CloseTrigger>
                                               <Dialog.Body>
                                                   {item.value}
@@ -122,7 +121,9 @@ function App(
                                                               endElement={<IconButton fontSize={'3xl'}
                                                                                       bg={'gray'}
                                                                                       size={'xs'}
-                                                                                      onClick={async () => await fetchResults(item._id) }
+                                                                                      onClick={async () =>
+                                                                                          await fetchResults(item._id)
+                                                                                      }
                                                                   >
                                                                   <LuSearch />
                                                               </IconButton>}>
@@ -136,19 +137,7 @@ function App(
                                                       </InputGroup>
                                               </Dialog.Body>
                                               <Dialog.Body>
-                                                  {/*{llmResponse && (*/}
-                                                  {/*    <Box*/}
-                                                  {/*        p={4}*/}
-                                                  {/*        mt={4}*/}
-                                                  {/*        borderRadius="md"*/}
-                                                  {/*        boxShadow="md"*/}
-                                                  {/*        bg="bg.subtle"*/}
-                                                  {/*    >*/}
-                                                  {/*        <Heading size="md" mb={2}>AI Response</Heading>*/}
-                                                  {/*        <Text>{llmResponse}</Text>*/}
-                                                  {/*    </Box>*/}
-                                                  {/*)}*/}
-                                                  {results && <LlmResultComponent results={results} loading={loading} />}
+                                                  <LlmResultComponent results={results} loading={loading} />
                                               </Dialog.Body>
                                           </Dialog.Content>
                                       </Dialog.Positioner>
