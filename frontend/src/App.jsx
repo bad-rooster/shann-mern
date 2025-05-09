@@ -105,7 +105,7 @@ function App() {
                           <Dialog.Body>
                             <Text mb={4}>Prescription Guide:</Text>
                             <Text whiteSpace="pre-line">
-                              {item.value.replace(/\.(?!\d)( [^:]*?):/g, '.\n\n$1:')}
+                              {item.value.replace(/\.(?!\d)([^:]*?):/g, '.\n\n$1:')}
                             </Text>
 
                           </Dialog.Body>
@@ -124,7 +124,6 @@ function App() {
                                   bg={'gray'}
                                   size={'xs'}
                                   onClick={async () => {
-                                    console.log("client request", selectProductId);
                                     await fetchResults(item._id, selectProductId)
                                   }
                                   }
@@ -137,6 +136,12 @@ function App() {
                                 size={'lg'}
                                 borderRadius={'3xl'}
                                 onChange={async (e) => updateProductId(e.target.value)}
+                                onKeyDown={async (e) => {
+                                  if (e.key === 'Enter') {
+                                    await fetchResults(item._id, selectProductId);
+                                  }
+                                }}
+
                               />
                             </InputGroup>
                           </Dialog.Body>

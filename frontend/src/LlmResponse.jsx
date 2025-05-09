@@ -16,7 +16,7 @@ export const LlmResultComponent = ({loading, results}) => {
         <Box mt={-2}>
           <Box>
             <ReactMarkdown>
-              {results.replace(/\./g, '.\n')}
+              {results.replace(/\.(?!\d)/g, '\.\n')}
             </ReactMarkdown>
           </Box>
 
