@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:key', getEntries);
 
-router.get('/llm/:id', invokeLLM);
+router.get('/llm/:id/:detail', invokeLLM);
 
 router.get('/search/:key', searchEntry)
 

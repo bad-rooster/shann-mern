@@ -18,7 +18,6 @@ export const useSearch = () => {
       });
       
       update(results);
-      console.log("Updated data");
     } catch (error) {
       console.error("Search error:", error);
     }

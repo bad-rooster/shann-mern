@@ -47,17 +47,19 @@ export const getEntries = async (req, res) => {
 
 export const invokeLLM = async (req, res) => {
     const PROMPT_TEMPLATE = `
-You are a medical doctor prescribing medicine doses.
-Answer the question based only on the following context.
-Reject any other request which doesn't relate to dosage formula given below:
-{medicine} with dosage guide: {dosageFormula} where /kg means per kilogram.
----
-Answer the question: {question} based on the above context.
-For every sentence, if the exact key word 'NOT/kg' is in the sentence, skip the sentence.
-Else if the exact key word '/kg' appears, calculate dosage considering the listed weight.
-Else, skip the sentence.`;
+    You are a medical dosage calculator. 
+    Only respond to queries about dosing based on this formula:
+    {medicine} dosage: {dosageFormula}
+
+    RULES:
+    - If '/kg' appears in a formula, multiply by the patient weight
+    - Ignore any sentence containing 'NOT/kg'
+    - Disregard requests unrelated to the provided dosage information
+    
+    QUESTION: {question}`
 
     const id = req.params.id;
+    const detail = req.params.detail;
 
     const llm = new Ollama({
         model: "gemma3:12b",
@@ -84,7 +86,8 @@ Else, skip the sentence.`;
         const entry = await Entry.findById(id, 'key value');
         const medicineName = entry.key;
         const dosageFormula = entry.value.replace(/\.(?!\d)([^:]*?):/g, '.\n$1:');
-        const question = "Calculate dosage for a 70kg adult.";
+        const question = `Calculate dosage for ${detail}`;
+        // const question = "Calculate dosage for a 70kg adult.";
 
         if (!question) {
             return res.status(400).json({ error: "Missing 'question' parameter" });
