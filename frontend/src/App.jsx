@@ -109,7 +109,10 @@ function App(
                                                   <CloseButton size="sm" onClick={() => {setResults(null);}}/>
                                               </Dialog.CloseTrigger>
                                               <Dialog.Body>
-                                                  {item.value}
+                                                  <Text whiteSpace="pre-line">
+                                                      {item.value.replace(/\.(?!\d)([^:]*?):/g, '.\n\n$1:')}
+                                                  </Text>
+
                                               </Dialog.Body>
                                               <Dialog.Body>
                                                   <Dialog.Title>Assistant Calculator</Dialog.Title>
