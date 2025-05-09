@@ -66,6 +66,8 @@ export const invokeLLM = async (req, res) => {
     model: "gemma3:12b",
     temperature: 0.1,
     maxRetries: 2,
+    baseUrl: "http://host.docker.internal:11434"
+
   });
 
   const promptTemplate = PromptTemplate.fromTemplate(
