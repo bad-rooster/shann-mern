@@ -10,7 +10,7 @@ const frontend_port = process.env.FRONTEND_PORT;
 
 // Add this CORS middleware configuration below line 8
 app.use(cors({
-  origin: [`https://localhost:${frontend_port}`, `https://amazing_kowalski:${frontend_port}`],
+  origin: `http://localhost:${frontend_port}`,
   methods: ['GET'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

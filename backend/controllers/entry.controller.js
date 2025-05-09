@@ -56,6 +56,7 @@ export const invokeLLM = async (req, res) => {
     - Ignore any sentence containing 'NOT/kg'
     - Pay extra attention to maximum limits
     - Disregard requests unrelated to the provided dosage information
+    - Always display a disclaimer at the end of the response
     
     QUESTION: {question}`
 
