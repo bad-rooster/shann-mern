@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#f0f8ff" stroke="#2c7bb6" stroke-width="4"/>
+  
+  <!-- Medical Cross -->
+  <rect x="84" y="40" width="31" height="120" rx="8" fill="#e41a1c"/>
+  <rect x="40" y="84" width="120" height="31" rx="8" fill="#e41a1c"/>
+
+  <!-- Document/Data Icons -->
+  <g transform="translate(50, 50) scale(0.7)">
+    <rect x="6" y="-5" width="40" height="50" rx="5" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+    <line x1="16" y1="10" x2="36" y2="10" stroke="#333333" stroke-width="2"/>
+    <line x1="16" y1="20" x2="36" y2="20" stroke="#333333" stroke-width="2"/>
+    <line x1="16" y1="30" x2="36" y2="30" stroke="#333333" stroke-width="2"/>
+  </g>
+
+  <g transform="translate(110, 110) scale(0.7)">
+    <rect x="10" y="10" width="40" height="50" rx="5" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+    <line x1="20" y1="25" x2="40" y2="25" stroke="#333333" stroke-width="2"/>
+    <line x1="20" y1="35" x2="40" y2="35" stroke="#333333" stroke-width="2"/>
+    <line x1="20" y1="45" x2="40" y2="45" stroke="#333333" stroke-width="2"/>
+  </g>
+
+  <!-- Central Node Representing AI/RAG -->
+  <circle cx="100" cy="100" r="20" fill="#984ea3" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="100" cy="100" r="12" fill="#ffffff"/>
+</svg>

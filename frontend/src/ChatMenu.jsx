@@ -13,19 +13,10 @@ export const ChatMenu = () => {
                 <Menu.Positioner>
                     <Menu.Content>
                         <Menu.Item value="new-txt-a">
-                            New Text File <Menu.ItemCommand>⌘E</Menu.ItemCommand>
-                        </Menu.Item>
-                        <Menu.Item value="new-file-a">
-                            New File... <Menu.ItemCommand>⌘N</Menu.ItemCommand>
+                            Select Medicine
                         </Menu.Item>
                         <Menu.Item value="new-win-a">
-                            New Window <Menu.ItemCommand>⌘W</Menu.ItemCommand>
-                        </Menu.Item>
-                        <Menu.Item value="open-file-a">
-                            Open File... <Menu.ItemCommand>⌘O</Menu.ItemCommand>
-                        </Menu.Item>
-                        <Menu.Item value="export-a">
-                            Export <Menu.ItemCommand>⌘S</Menu.ItemCommand>
+                            Edit Recipe
                         </Menu.Item>
                     </Menu.Content>
                 </Menu.Positioner>
