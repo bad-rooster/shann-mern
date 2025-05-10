@@ -11,12 +11,6 @@ export const useSearch = () => {
     
     try {
       const results = await fetchSearchResults(searchKey);
-      
-      // Log individual entries if needed
-      results.forEach(entry => {
-        console.log(entry);
-      });
-      
       update(results);
     } catch (error) {
       console.error("Search error:", error);

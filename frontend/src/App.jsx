@@ -1,6 +1,8 @@
 import {
   Box,
-  Center, CloseButton, Dialog,
+  Center,
+  CloseButton,
+  Dialog,
   Flex,
   Heading,
   IconButton,
@@ -35,8 +37,6 @@ function App() {
     setResults(data);
     setLoading(false);
   };
-
-
   return (
     <Flex minH="100vdh">
       <Stack h='100vh'>
@@ -107,7 +107,6 @@ function App() {
                             <Text whiteSpace="pre-line">
                               {item.value.replace(/\.(?!\d)([^:]*?):/g, '.\n\n$1:')}
                             </Text>
-
                           </Dialog.Body>
                           <Dialog.Body>
                             <Dialog.Title>Assistant Calculator</Dialog.Title>
@@ -131,7 +130,7 @@ function App() {
                                   <LuSearch/>
                                 </IconButton>}>
                               <Input
-                                placeholder={'Example: 70kg adult male or 10 days old baby weighing 3.2kg'}
+                                placeholder={'E.g: 70kg adult or 10 days baby @ 3.2kg'}
                                 variant={'subtle'}
                                 size={'lg'}
                                 borderRadius={'3xl'}
@@ -141,7 +140,6 @@ function App() {
                                     await fetchResults(item._id, selectProductId);
                                   }
                                 }}
-
                               />
                             </InputGroup>
                           </Dialog.Body>
@@ -168,7 +166,6 @@ function App() {
              zIndex="1"
              borderTopColor="gray.200"
         >Shann RAG makes mistakes. Please consult professionals.</Box>
-
       </Stack>
     </Flex>
   )
