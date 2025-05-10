@@ -8,7 +8,6 @@ const app = express();
 const port = process.env.BACKEND_PORT;
 const frontend_port = process.env.FRONTEND_PORT;
 
-// Add this CORS middleware configuration below line 8
 app.use(cors({
   origin: `http://localhost:${frontend_port}`,
   methods: ['GET'],
@@ -17,10 +16,7 @@ app.use(cors({
 
 app.use(express.json());
 
-
 app.use('/api/entries', entryRouter)
-
-// app.use('/api/search', entryRouter)
 
 app.get('/api/search', async (req, res) => {
   try {
@@ -47,16 +43,13 @@ app.get('/api/search', async (req, res) => {
 
     const response = await Entry.aggregate(agg);
 
-
     res.status(200).json({success: true, data: response});
 
   } catch (e) {
-    console.log(e);
     res.status(500).json({success: false, error: e});
   }
 })
 
 app.listen(port, () => {
   connectDB();
-  console.log(`Listening on port ${port}`);
 })
