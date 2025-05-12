@@ -1,17 +1,26 @@
 name: shann_rag
 services:
-  youthful_wilbur:
-    container_name: youthful_wilbur
+  backend:
+    container_name: backend
     build: .
     env_file:
       - .env
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
-  amazing_kowalski:
-    container_name: amazing_kowalski
+    networks:
+      - app_network
+  frontend:
+    container_name: frontend
     build:
       context: ./frontend
     env_file:
       - .env
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    networks:
+      - app_network
+    depends_on:
+      - backend
+networks:
+  app_network:
+    driver: bridge
