@@ -1,12 +1,11 @@
 import Entry from "../models/entry.model.js";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import {ChatGoogleGenerativeAI} from "@langchain/google-genai";
 import {PromptTemplate} from "@langchain/core/prompts";
 import {RunnableSequence} from "@langchain/core/runnables";
 
 export const searchEntry = async (req, res) => {
   try {
     const {key} = req.query;
-
     const agg = [{
       $search: {
         index: "medicine-title",
@@ -24,9 +23,7 @@ export const searchEntry = async (req, res) => {
         key: 1
       }
     }];
-
     const response = await Entry.aggregate(agg);
-
     res.status(200).json({success: true, data: response});
   } catch (e) {
     console.log(e);
@@ -52,10 +49,13 @@ export const invokeLLM = async (req, res) => {
     {medicine} dosage: {dosageFormula}
 
     RULES:
-    - If '/kg' appears in a formula, multiply by the patient weight
-    - Ignore any sentence containing 'NOT/kg'
+    - If '/kg' appears in a formula, multiply by the patient weight. Show working example
+    - Else if 'NOT/kg' appears, return the dosage formula
     - Pay extra attention to maximum limits
+    - Calculate all possible dosages if not directly specified
+    - Every sentence must either be re-listed or a valid calculation. Fix spelling mistakes
     - Disregard requests unrelated to the provided dosage information
+    - Display tidy markdown format, use header and bold for key information
     
     QUESTION: {question}`
 
@@ -84,7 +84,6 @@ export const invokeLLM = async (req, res) => {
     llm,
   ]);
 
-
   try {
     const entry = await Entry.findById(id, 'key value');
     const medicineName = entry.key;
@@ -95,14 +94,12 @@ export const invokeLLM = async (req, res) => {
       return res.status(400).json({error: "Missing 'question' parameter"});
     }
 
-    // Invoke the model
     const response = await chain.invoke({
       medicine: medicineName,
       dosageFormula: dosageFormula,
       question: question,
     });
 
-    // Return response
     res.status(200).json({
       success: true,
       entry: entry,
