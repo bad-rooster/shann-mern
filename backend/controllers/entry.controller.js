@@ -1,5 +1,5 @@
 import Entry from "../models/entry.model.js";
-import {Ollama} from "@langchain/ollama";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import {PromptTemplate} from "@langchain/core/prompts";
 import {RunnableSequence} from "@langchain/core/runnables";
 
@@ -61,14 +61,14 @@ export const invokeLLM = async (req, res) => {
 
   const id = req.params.id;
   const detail = req.params.detail;
-
-  const llm = new Ollama({
-    model: "gemma3:12b",
+  const llm = new ChatGoogleGenerativeAI
+  ({
+    apiKey: process.env.GOOGLE_API_KEY,
+    model: process.env.GOOGLE_LLM_MODEL,
     temperature: 0.1,
     maxRetries: 2,
-    baseUrl: "http://host.docker.internal:11434"
-
   });
+
 
   const promptTemplate = PromptTemplate.fromTemplate(
     PROMPT_TEMPLATE
@@ -90,7 +90,6 @@ export const invokeLLM = async (req, res) => {
     const medicineName = entry.key;
     const dosageFormula = entry.value.replace(/\.(?!\d)([^:]*?):/g, '.\n$1:');
     const question = `Calculate dosage for ${detail}`;
-    // const question = "Calculate dosage for a 70kg adult.";
 
     if (!question) {
       return res.status(400).json({error: "Missing 'question' parameter"});
