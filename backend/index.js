@@ -9,7 +9,7 @@ const port = process.env.BACKEND_PORT;
 const frontend_port = process.env.FRONTEND_PORT;
 
 app.use(cors({
-  origin: `http://localhost:${frontend_port}`,
+  origin: `*`,
   methods: ['GET'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

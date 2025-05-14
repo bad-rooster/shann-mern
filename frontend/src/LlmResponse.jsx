@@ -1,12 +1,10 @@
 import {Text, Box, Spinner, VStack} from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 
-
 export const LlmResultComponent = ({loading, results}) => {
   return (
     <Box
       display="flex" width="100%" justifyContent="center"
-
     >
       {loading ? (
         <VStack colorPalette="teal" justifyContent="center" alignItems="center"
@@ -18,7 +16,7 @@ export const LlmResultComponent = ({loading, results}) => {
         <Box mt={-2} width="100%">
           <Box textAlign="left">
             <ReactMarkdown>
-              {results.replace(/\.(?!\d)/g, '\.\n')}
+              {results}
             </ReactMarkdown>
           </Box>
 

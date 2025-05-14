@@ -56,6 +56,8 @@ export const invokeLLM = async (req, res) => {
     - Every sentence must either be re-listed or a valid calculation. Fix spelling mistakes
     - Disregard requests unrelated to the provided dosage information
     - Display tidy markdown format, use header and bold for key information
+    - Display multiplication as 'x', do not use '*'
+    - Return escaped dot when returning decimal values
     
     QUESTION: {question}`
 

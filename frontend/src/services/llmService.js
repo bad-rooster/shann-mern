@@ -3,7 +3,7 @@ export const fetchLlmResults = async (medicineId, patientDetail) => {
         return null;
     }
     try {
-        const response = await fetch(`http://localhost:3000/api/entries/llm/${medicineId}/${patientDetail}`);
+        const response = await fetch(`/api/entries/llm/${medicineId}/${patientDetail}`);
         const data = await response.json();
         return data.answer.kwargs.content;
     } catch (error) {

@@ -3,7 +3,7 @@ export const fetchSearchResults = async (searchKey) => {
     return []
   }
   try {
-    const response = await fetch(`http://localhost:3000/api/search?key=${searchKey}`);
+    const response = await fetch(`/api/search?key=${searchKey}`);
     const data = await response.json();
     return data.data;
   } catch (error) {
