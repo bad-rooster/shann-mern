@@ -113,7 +113,7 @@ function Homepage() {
                         </Dialog.Body>
                         <Dialog.Body>
                           <Text mb={4}
-                          >Enter patient detail below</Text>
+                          >Enter patient detail, route and specifics below</Text>
                           <InputGroup
                             startElement={
                               <PiChatCircleDotsLight/>}
