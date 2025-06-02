@@ -1,9 +1,9 @@
 import { Avatar } from "@chakra-ui/react"
+import {UserButton} from '@clerk/clerk-react'
+import React from "react";
 
 export const ChatAvatar = () => {
     return (
-        <Avatar.Root key={"solid"} variant={"solid"} colorPalette={"teal"} mr={'3'} size={'xl'}>
-            <Avatar.Fallback name="A N" />
-        </Avatar.Root>
+      <UserButton />
     )
 }

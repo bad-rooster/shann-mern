@@ -3,12 +3,29 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Homepage from "./Homepage.jsx";
-
+import { SignedIn, SignedOut, SignIn, UserButton } from '@clerk/clerk-react'
 function App() {
   return (
-    <Flex minH="100vdh">
-      <Homepage />
-    </Flex>
+
+    <header>
+      <SignedOut>
+        <div style={{
+          display: 'flex',
+          height: '100vh',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+        <SignIn />
+        </div>
+      </SignedOut>
+      <SignedIn>
+        <Flex minH="100vdh">
+          <Homepage />
+        </Flex>
+        <UserButton />
+      </SignedIn>
+    </header>
   );
 }
 

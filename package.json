@@ -8,11 +8,11 @@
   },
   "keywords": [
     "Frank Shann",
-    "RAG LLM"
+    "AI LLM"
   ],
   "author": "ayn",
   "license": "ISC",
-  "description": "Shann RAG LLM",
+  "description": "Shann LLM Assistant",
   "devDependencies": {
     "nodemon": "^3.1.9"
   },

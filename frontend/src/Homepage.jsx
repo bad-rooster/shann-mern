@@ -55,7 +55,7 @@ function Homepage() {
               <PiChatCircleDotsLight/>}
           >
             <Input
-              placeholder={'Message Shann RAG'}
+              placeholder={'Message Shann Assistant'}
               variant={'subtle'}
               size={'lg'}
               borderRadius={'3xl'}
@@ -165,7 +165,7 @@ function Homepage() {
            textAlign="center"
            zIndex="1"
            borderTopColor="gray.200"
-      >Shann RAG makes mistakes. Please consult professionals.</Box>
+      >Shann AI Assistant makes mistakes. Please consult professionals.</Box>
     </Stack>
   );
 }
