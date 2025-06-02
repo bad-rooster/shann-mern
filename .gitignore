@@ -1,6 +1,7 @@
 .env
 .idea
 node_modules
+certs
 
 # Logs
 logs
