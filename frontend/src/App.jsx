@@ -23,7 +23,6 @@ function App() {
         <Flex minH="100vdh">
           <Homepage />
         </Flex>
-        <UserButton />
       </SignedIn>
     </header>
   );
