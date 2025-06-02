@@ -3,45 +3,6 @@ import {ChatGoogleGenerativeAI} from "@langchain/google-genai";
 import {PromptTemplate} from "@langchain/core/prompts";
 import {RunnableSequence} from "@langchain/core/runnables";
 
-export const searchEntry = async (req, res) => {
-  try {
-    const {key} = req.query;
-    const agg = [{
-      $search: {
-        index: "medicine-title",
-        autocomplete: {
-          query: key,
-          path: "key",
-          tokenOrder: "sequential"
-        }
-      }
-    }, {
-      $limit: 5
-    }, {
-      $project: {
-        _id: 1,
-        key: 1
-      }
-    }];
-    const response = await Entry.aggregate(agg);
-    res.status(200).json({success: true, data: response});
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({success: false, error: e});
-  }
-}
-
-export const getEntries = async (req, res) => {
-  const key = req.params.key;
-  try {
-    const entries = await Entry.find({key: {'$regex': `^${key}`, '$options': 'i'}});
-    res.status(200).json({success: true, data: entries});
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({success: false, error: err});
-  }
-}
-
 export const invokeLLM = async (req, res) => {
   const PROMPT_TEMPLATE = `
     You are a medical dosage calculator. 
@@ -53,7 +14,7 @@ export const invokeLLM = async (req, res) => {
     - Else if 'NOT/kg' appears, return the dosage formula
     - Pay extra attention to maximum limits
     - Calculate all possible dosages if not directly specified
-    - Every sentence must either be re-listed or a valid calculation. Fix spelling mistakes
+    - Every sentence must either be listed or a valid calculation. Fix spelling mistakes
     - Disregard requests unrelated to the provided dosage information
     - Display tidy markdown format, use header and bold for key information
     - Display multiplication as 'x', do not use '*'

@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import {connectDB} from "./config/db.js";
-import entryRouter from "./routes/entry.route.js";
+import entryRouter from "./routes/llm.route.js";
+import searchRouter from "./routes/search.route.js";
 import Entry from "./models/entry.model.js";
 
 const app = express();
@@ -18,38 +19,16 @@ app.use(express.json());
 
 app.use('/api/entries', entryRouter)
 
-app.get('/api/search', async (req, res) => {
-  try {
-    const {key} = req.query;
+app.get('/api/search', searchRouter)
 
-    const agg = [{
-      $search: {
-        index: "medicine-title",
-        autocomplete: {
-          query: key,
-          path: "key",
-          tokenOrder: "sequential"
-        }
-      }
-    }, {
-      $limit: 5
-    }, {
-      $project: {
-        _id: 1,
-        key: 1,
-        value: 1
-      }
-    }];
-
-    const response = await Entry.aggregate(agg);
-
-    res.status(200).json({success: true, data: response});
-
-  } catch (e) {
-    res.status(500).json({success: false, error: e});
-  }
-})
-
-app.listen(port, () => {
-  connectDB();
-})
+connectDB()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Frontend server running on port ${frontend_port}`);
+      console.log(`Backend server running on port ${port}`);
+    });
+  })
+  .catch(error => {
+    console.error('Failed to connect to database:', error);
+    process.exit(1);
+  });
