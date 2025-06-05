@@ -1,0 +1,14 @@
+.env
+.idea
+node_modules
+certs
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# NGINX
+nginx
