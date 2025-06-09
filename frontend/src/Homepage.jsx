@@ -47,7 +47,7 @@ function Homepage() {
       <Center flex={'1'}>
         <VStack>
           <Heading size={'3xl'}>
-            What can I help with?
+            What dosage can I help with?
           </Heading>
           <InputGroup
             minW={'45vw'}
@@ -55,7 +55,7 @@ function Homepage() {
               <PiChatCircleDotsLight/>}
           >
             <Input
-              placeholder={'Message Shann Assistant'}
+              placeholder={'Type your medicine name here. E.g: ibuprofen, paracetamol'}
               variant={'subtle'}
               size={'lg'}
               borderRadius={'3xl'}
